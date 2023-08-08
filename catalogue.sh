@@ -24,12 +24,12 @@ curl -o /tmp/catalogue.zip https://roboshop-artifacts.s3.amazonaws.com/catalogue
 
 echo -e "\e[36m>>>>>>>>> Extract Application Content <<<<<<<<<<<<\e[0m"
 cd /app
-unzip /tmp/catalogue.zip
+unzip /tmp/catalogue.zip &>>/tmp/roboshop.log
 cd /app
 echo -e "\e[36m>>>>>>>>> Download NodeJS Dependencies <<<<<<<<<<<<\e[0m"
 npm install &>>/tmp/roboshop.log
 echo -e "\e[36m>>>>>>>>> Install Mongo Client  <<<<<<<<<<<<\e[0m"
-yum install mongodb-org-shell -y
+yum install mongodb-org-shell -y &>>/tmp/roboshop.log
 
 echo -e "\e[36m>>>>>>>>> Load Catalogue Schema <<<<<<<<<<<<\e[0m"
 mongo --host mongodb.pdevops562.online </app/schema/catalogue.js &>>/tmp/roboshop.log
