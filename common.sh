@@ -2,7 +2,7 @@ nodejs() {
   log=/tmp/roboshop.log
   # /tmp/roboshop.log (is the file all the outputs are saved)
 
-  echo -e "\e[36m>>>>>>>>> Create Catalogue Service <<<<<<<<<<<<\e[0m" | tee -a /tmp/roboshop.log
+  echo -e "\e[36m>>>>>>>>> Create ${component} Service <<<<<<<<<<<<\e[0m" | tee -a /tmp/roboshop.log
   cp ${component}.service /etc/systemd/system/${component}.service &>>${log}
 
   echo -e "\e[36m>>>>>>>>> Create MongoDB Repo  <<<<<<<<<<<<\e[0m" | tee -a /tmp/roboshop.log
@@ -35,10 +35,10 @@ nodejs() {
   echo -e "\e[36m>>>>>>>>> Install Mongo Client  <<<<<<<<<<<<\e[0m" | tee -a /tmp/roboshop.log
   yum install mongodb-org-shell -y &>>${log}
 
-  echo -e "\e[36m>>>>>>>>> Load Catalogue Schema <<<<<<<<<<<<\e[0m" | tee -a /tmp/roboshop.log
+  echo -e "\e[36m>>>>>>>>> Load ${component} Schema <<<<<<<<<<<<\e[0m" | tee -a /tmp/roboshop.log
   mongo --host mongodb.pdevops562.online </app/schema/${component}.js &>>${log}
 
-  echo -e "\e[36m>>>>>>>>> Start Catalogue Service <<<<<<<<<<<<\e[0m" | tee -a /tmp/roboshop.log
+  echo -e "\e[36m>>>>>>>>> Start ${component} Service <<<<<<<<<<<<\e[0m" | tee -a /tmp/roboshop.log
   systemctl daemon-reload &>>${log}
   systemctl enable ${component} &>>${log}
   systemctl restart ${component} &>>${log}
