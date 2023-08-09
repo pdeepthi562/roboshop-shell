@@ -1,4 +1,4 @@
-nodejs() {
+func_nodejs() {
   log=/tmp/roboshop.log
   # /tmp/roboshop.log (is the file all the outputs are saved)
 
