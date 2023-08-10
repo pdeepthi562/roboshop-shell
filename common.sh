@@ -1,6 +1,8 @@
 log=/tmp/roboshop.log
 
 func_apppreq() {
+  echo -e "\e[36m>>>>>>>>> Create ${component} Service <<<<<<<<<<<<\e[0m" | tee -a /tmp/roboshop.log
+    cp ${component}.service /etc/systemd/system/${component}.service &>>${log}
   echo -e "\e[36m>>>>>>>>> Create Application User  <<<<<<<<<<<<\e[0m" | tee -a /tmp/roboshop.log
     useradd roboshop &>>${log}
 
@@ -35,8 +37,6 @@ func_nodejs() {
   log=/tmp/roboshop.log
   # /tmp/roboshop.log (is the file all the outputs are saved)
 
-  echo -e "\e[36m>>>>>>>>> Create ${component} Service <<<<<<<<<<<<\e[0m" | tee -a /tmp/roboshop.log
-  cp ${component}.service /etc/systemd/system/${component}.service &>>${log}
 
   echo -e "\e[36m>>>>>>>>> Create MongoDB Repo  <<<<<<<<<<<<\e[0m" | tee -a /tmp/roboshop.log
   cp mongo.repo /etc/yum.repos.d/mongo.repo &>>${log}
@@ -60,8 +60,7 @@ func_apppreq
   func_systemd
   }
   func_java() {
-    echo -e "\e[36m>>>>>>>>> Create ${component} Service <<<<<<<<<<<<\e[0m"
-    cp ${component}.service /etc/systemd/system/${component}.service &>>${log}
+
     echo -e "\e[36m>>>>>>>>> Install maven <<<<<<<<<<<<\e[0m"
     yum install maven -y &>>${log}
 
@@ -79,5 +78,17 @@ func_apppreq
     }
 
 
+func_python() {
 
+   echo -e "\e[36m>>>>>>>>> Install python <<<<<<<<<<<<\e[0m"
+  yum install python36 gcc python3-devel -y &>>${log}
+
+  func_apppreq
+
+  echo -e "\e[36m>>>>>>>>> Build ${component} Service  <<<<<<<<<<<<\e[0m"
+  pip3.6 install -r requirements.txt &>>${log}
+
+  func_systemd
+
+}
 
