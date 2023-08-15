@@ -100,3 +100,19 @@ func_python() {
 
 }
 
+func_golang() {
+
+echo -e "\e[36m>>>>>>>>> Install golang  <<<<<<<<<<<<\e[0m"
+yum install golang -y &>>${log}
+
+func_apppreq
+
+
+go mod init dispatch  &>>${log}
+go get &>>${log}
+echo -e "\e[36m>>>>>>>>> Build ${component} Service  <<<<<<<<<<<<\e[0m"
+go build &>>${log}
+
+func_systemd
+
+}
