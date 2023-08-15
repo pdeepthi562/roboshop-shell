@@ -36,7 +36,7 @@ func_schema_setup() {
       yum install mongdb -y &>>${log}
 
    echo -e "\e[36m>>>>>>>>> Load User Schema  <<<<<<<<<<<<\e[0m"
-   mongo --h mongodb.pdevops562.online  < /app/schema/${component}.sql &>>${log}
+   mongo --host mongodb.pdevops562.online  < /app/schema/${component}.sql &>>${log}
    fi
    if [ "${schema_type}" == "mysql" ]; then
    echo -e "\e[36m>>>>>>>>> Install MysQl Client  <<<<<<<<<<<<\e[0m"
@@ -66,6 +66,7 @@ func_apppreq
   npm install &>>${log}
 
  func_schema_setup
+
   func_systemd
   }
   func_java() {
@@ -80,6 +81,7 @@ func_apppreq
     mv target/${component}-1.0.jar ${component}.jar &>>${log}
 
  func_schema_setup
+
     func_systemd
     }
 
