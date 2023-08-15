@@ -12,7 +12,10 @@ func_apppreq() {
     cp ${component}.service /etc/systemd/system/${component}.service &>>${log}
     func_exit_status
   echo -e "\e[36m>>>>>>>>> Create Application User  <<<<<<<<<<<<\e[0m" | tee -a /tmp/roboshop.log
+    id roboshop &>>${log}
+    if [ $? -ne 0 ]; then
     useradd roboshop &>>${log}
+    fi
  func_exit_status
     echo -e "\e[36m>>>>>>>>> Removing old Application Directory <<<<<<<<<<<<\e[0m" | tee -a /tmp/roboshop.log
     rm -rf /app &>>${log}
