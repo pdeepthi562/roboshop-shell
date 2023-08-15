@@ -36,7 +36,7 @@ func_schema_setup() {
       yum install mongdb -y &>>${log}
 
    echo -e "\e[36m>>>>>>>>> Load User Schema  <<<<<<<<<<<<\e[0m"
-   mongo --host mongodb.pdevops562.online  < /app/schema/${component}.sql &>>${log}
+   mongo --host mongodb.pdevops562.online  < /app/schema/${component}.js &>>${log}
    fi
    if [ "${schema_type}" == "mysql" ]; then
    echo -e "\e[36m>>>>>>>>> Install MysQl Client  <<<<<<<<<<<<\e[0m"
