@@ -1,5 +1,5 @@
 mysql_root_password=$1
-if [ -z "${"mysql_root_password}" ]; then
+if [ -z "${mysql_root_password}" ]; then
    echo INput password Missing
    exit 1
    fi
@@ -10,4 +10,5 @@ systemctl enable mysqld
 systemctl restart mysqld
 mysql_secure_installation --set-root-pass ${mysql_root_password}
 
-# RoboShop@1
+
+# (RoboShop@1)
