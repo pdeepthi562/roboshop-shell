@@ -11,4 +11,4 @@ systemctl restart mysqld
 mysql_secure_installation --set-root-pass ${mysql_root_password}
 
 
-# (RoboShop@1)
+# (RoboShop@1) is password
