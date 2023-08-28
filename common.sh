@@ -48,7 +48,7 @@ echo -e "\e[36m>>>>>>>>> Start ${component} Service <<<<<<<<<<<<\e[0m" | tee -a 
 func_schema_setup() {
   if [ "${schema_type}" == "mongodb" ]; then
   echo -e "\e[36m>>>>>>>>> Install MongoDB Client  <<<<<<<<<<<<\e[0m"
-      yum install mongdb-org-shell -y &>>${log}
+      yum install mongodb-org-shell -y &>>${log}
  func_exit_status
    echo -e "\e[36m>>>>>>>>> Load User Schema  <<<<<<<<<<<<\e[0m"
    mongo --host mongodb.pdevops562.online  < /app/schema/${component}.js &>>${log}
